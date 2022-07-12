@@ -41,3 +41,14 @@ No resources.
 ## Outputs
 
 No outputs.
+
+## Usage
+Setup development environment and apply Terraform
+```shell
+make test
+```
+
+Destroy development environment
+```shell
+make stop-container clean-docker
+```
