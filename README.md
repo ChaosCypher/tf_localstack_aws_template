@@ -52,3 +52,5 @@ Destroy development environment
 ```shell
 make stop-container clean-docker
 ```
+
+Add additional AWS services to localstack by adding the service to the [make](https://github.com/ChaosCypher/tf_localstack_aws_template/blob/main/Makefile#L4) variable
