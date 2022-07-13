@@ -43,14 +43,19 @@ No resources.
 No outputs.
 
 ## Usage
-Setup development environment and apply Terraform
+Setup development environment and apply Terraform (CI)
 ```shell
-make test
+make integration-test-ci
+```
+
+Setup local development environment and apply Terraform
+```shell
+make local-development
 ```
 
 Destroy development environment
 ```shell
-make stop-container clean-docker
+make clean
 ```
 
 Add additional AWS services to localstack by adding the service to the [make](https://github.com/ChaosCypher/tf_localstack_aws_template/blob/main/Makefile#L4) variable
