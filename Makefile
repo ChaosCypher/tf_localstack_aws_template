@@ -14,6 +14,14 @@ TF_BUCKET_NAME := tf-state-bucket
 # the dynamodb table that will handle terraform state locking
 TF_DYNAMO_NAME := terraform-backend-lock
 
+####################
+# System Variables #
+####################
+
+export AWS_ACCESS_KEY_ID="test"
+export AWS_SECRET_ACCESS_KEY="test"
+export AWS_DEFAULT_REGION=($REGION)
+
 ##################
 # Path Variables #
 ##################
@@ -114,7 +122,7 @@ tf-create-s3-bucket:
 # create the dynamodb table in the localstack container for terraform remote state locking
 .PHONY: tf-create-dynamodb
 tf-create-dynamodb:
-	@AWS_PAGER="" aws --endpoint-url http://localhost:4566 dynamodb create-table --table-name $(TF_DYNAMO_NAME) --attribute-definitions AttributeName=LockID,AttributeType=S --key-schema AttributeName=LockID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+	@AWS_PAGER="" aws --endpoint-url http://localhost:4566 dynamodb create-table --table-name $(TF_DYNAMO_NAME) --region $(REGION) --attribute-definitions AttributeName=LockID,AttributeType=S --key-schema AttributeName=LockID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
 
 # run a terraform init with the backend using the localstack container
 .PHONY: tf-init
